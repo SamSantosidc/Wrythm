@@ -20,6 +20,9 @@ def main():
         dominant_note = Manipulation.dominant_note_from_wav(caminho_wav)
         print(f"A nota dominante no arquivo é: {dominant_note}")
 
+        notesFromWave = Manipulation.notes_from_wave(caminho_wav)
+        print(f"As notas tocadas no arquivo são: {notesFromWave}")
+
         Manipulation.plot_full_oscilloscope(caminho_wav)  #onda
 
     except FileNotFoundError as e:

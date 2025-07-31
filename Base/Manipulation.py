@@ -80,6 +80,41 @@ def dominant_note_from_wav(path_wav):
     except Exception as e:
         raise Exception(f"Erro na análise do áudio: {e}")
 
+def notes_from_wave(path_wav, interval_duration=0.5):
+    '''
+    Analisa um arquivo .wav e retorna as notas tocadas em múltiplos intervalos.
+    interval_duration: duração de cada intervalo em segundos.
+    Retorna uma lista de tuplas (tempo_inicial, freq_dominante, nota).
+    '''
+    try:
+        y, sr = librosa.load(path_wav)
+        total_duration = librosa.get_duration(y=y, sr=sr)
+        interval_samples = int(interval_duration * sr)
+        notes = []
+
+        for start in np.arange(0, len(y), interval_samples):
+            end = int(min(start + interval_samples, len(y)))
+            segment = y[start:end]
+            if len(segment) == 0:
+                continue
+
+            frequencies = np.fft.rfftfreq(len(segment), 1 / sr)
+            fft_spectrum = np.abs(np.fft.rfft(segment))
+
+            if len(frequencies) == 0 or len(fft_spectrum) == 0:
+                continue
+
+            peak_freq = frequencies[np.argmax(fft_spectrum)]
+            note = freq_to_note(peak_freq)
+            time_start = start / sr
+            notes.append((time_start, peak_freq, note))
+
+        return notes
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Arquivo não encontrado: {path_wav}")
+    except Exception as e:
+        raise Exception(f"Erro na análise do áudio: {e}")
+
 def plot_full_oscilloscope(path_wav):
 
     #Exibe a forma de onda (osciloscópio) e espectrograma de um arquivo .wav.
