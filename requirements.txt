@@ -1,0 +1,28 @@
+numpy>=1.25.0
+scipy>=1.11.0
+pandas>=2.1.0
+matplotlib>=3.8.0
+seaborn>=0.12.3
+
+# Áudio
+librosa>=0.10.0
+soundfile>=0.12.1
+pydub>=0.25.1
+
+# Machine Learning / AI
+torch>=2.1.0
+torchaudio>=2.1.0
+scikit-learn>=1.3.0
+
+# Outros
+tqdm>=4.66.1
+pytest>=8.2.0
+
+# Descrição dos pacotes
+numpy, scipy, pandas: manipulação numérica e tabelar.
+matplotlib, seaborn: gráficos e visualizações.
+librosa, soundfile, pydub: manipulação de áudio.
+torch, torchaudio: deep learning para áudio.
+scikit-learn: algoritmos clássicos de ML.
+tqdm: barras de progresso.
+pytest: para testes unitários na pasta tests/.
