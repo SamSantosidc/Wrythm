@@ -1,3 +1,5 @@
+[🇧🇷 Versão em Português](README.md) | [🌍 English Version](README.en.md)
+
 # 🎵 Wrythm  
 
 O **Wrythm** é um projeto que combina **Inteligência Artificial e Música**, com o objetivo de oferecer uma nova forma de estudar e compreender a arte musical.  
