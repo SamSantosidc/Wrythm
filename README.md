@@ -114,7 +114,6 @@ O objetivo do Wrythm é unir tecnologia, música e educação para transformar o
 
 📌 Conclusão
 
-O Wrythm se diferencia das soluções existentes ao propor uma abordagem de letramento musical: em vez de apenas mostrar o que tocar, busca explicar o porquê por trás da música — seu ritmo, sua história, o estilo do compositor e a interpretação correta.
+O Wrythm se diferencia das soluções existentes ao propor uma abordagem de letramento musical: em vez de apenas mostrar o que tocar, busca explicar o porquê por trás da música, seu ritmo, sua história, o estilo do compositor e a interpretação correta.
 
 Essa integração de tecnologia, música e educação abre caminho para uma nova forma de estudar e vivenciar a música.
-Contribuições são bem-vindas! 🎶
