@@ -26,3 +26,11 @@ def trim_silence(y: np.ndarray):
     y_trimmed, _ = librosa.effects.trim(y)
     return y_trimmed
 
+
+def segment_audio(y: np.ndarray, sr: int, segment_duration: float = 5.0):
+    """
+    Segmenta o áudio em blocos de segment_duration segundos.
+    Retorna lista de arrays.
+    """
+    seg_samples = int(segment_duration * sr)
+    return [y[i:i + seg_samples] for i in range(0, len(y), seg_samples)]
