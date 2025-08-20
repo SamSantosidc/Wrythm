@@ -1,6 +1,6 @@
 """
 Módulo responsável pelo carregamento e pré-processamento de áudio.
-Explora funções do Librosa para normalização, resample e segmentação.
+Explora funções para normalização, resample e segmentação.
 """
 
 import librosa
