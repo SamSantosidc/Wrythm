@@ -21,3 +21,8 @@ def normalize_audio(y: np.ndarray):
     return librosa.util.normalize(y)
 
 
+def trim_silence(y: np.ndarray):
+    """Remove silêncio inicial/final do áudio."""
+    y_trimmed, _ = librosa.effects.trim(y)
+    return y_trimmed
+
