@@ -14,3 +14,10 @@ def load_audio(path: str, sr: int = 22050):
     """
     y, sr = librosa.load(path, sr=sr, mono=True)
     return y, sr
+
+
+def normalize_audio(y: np.ndarray):
+    """Normaliza o sinal de áudio (amplitude entre -1 e 1)."""
+    return librosa.util.normalize(y)
+
+
