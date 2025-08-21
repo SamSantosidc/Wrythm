@@ -7,6 +7,39 @@ import librosa
 import numpy as np
 
 
+def select_file():
+    """Abre uma janela para o usuário selecionar um arquivo de áudio."""
+    root = Tk()
+    root.withdraw()  # não mostrar janela principal
+    file_path = filedialog.askopenfilename(
+        title="Selecione um arquivo de áudio",
+        filetypes=[
+            ("Arquivos de áudio", "*.wav *.mp3 *.flac *.ogg *.m4a"),
+            ("Todos os arquivos", "*.*")
+        ]
+    )
+    return file_path if file_path else None
+
+
+def convert_to_wav(path: str, output_dir="converted"):
+    """
+    Converte qualquer formato de áudio suportado pelo pydub para WAV.
+    Retorna o caminho do arquivo convertido.
+    """
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    filename = os.path.splitext(os.path.basename(path))[0] + ".wav"
+    wav_path = os.path.join(output_dir, filename)
+
+    try:
+        audio = AudioSegment.from_file(path)
+        audio.export(wav_path, format="wav")
+        return wav_path
+    except Exception as e:
+        raise Exception(f"Erro ao converter {path} para WAV: {e}")
+
+
 def load_audio(path: str, sr: int = 22050):
     """
     Carrega arquivo de áudio para análise.
