@@ -8,16 +8,23 @@ from wrythm import audio_processing, music_analysis, utils
 
 
 def main():
-    # Input
-    path = input("Digite o caminho do arquivo de áudio: ").strip()
-    if not os.path.exists(path):
-        print("Arquivo não encontrado.")
+    # Selecionar arquivo via janela
+    path = audio_processing.select_file()
+    if not path:
+        print("Nenhum arquivo selecionado.")
         return
+
+
+    # Converter para WAV
+    path_wav = audio_processing.convert_to_wav(path)
+    print(f"Arquivo convertido para WAV: {path_wav}")
+
 
     # Carregar e pré-processar
     y, sr = audio_processing.load_audio(path)
     y = audio_processing.trim_silence(y)
     y = audio_processing.normalize_audio(y)
+
 
     # Análise musical
     bpm = music_analysis.estimate_bpm(y, sr)
@@ -25,10 +32,12 @@ def main():
     mfcc = music_analysis.extract_mfcc(y, sr)
     centroid, bandwidth, contrast = music_analysis.extract_spectral_features(y, sr)
 
+
     # Resultados no terminal
     print(f"🎵 BPM estimado: {bpm:.2f}")
     print(f"🎵 Centroid espectral médio: {centroid.mean():.2f} Hz")
     print(f"🎵 Bandwidth espectral médio: {bandwidth.mean():.2f} Hz")
+
 
     # Visualizações
     utils.plot_waveform(y, sr)
