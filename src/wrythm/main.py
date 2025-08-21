@@ -4,6 +4,7 @@ Carrega um áudio, processa, analisa e gera visualizações.
 """
 
 import os
+import numpy as np
 from wrythm import audio_processing, music_analysis, utils
 
 
@@ -34,7 +35,7 @@ def main():
 
 
     # Resultados no terminal
-    print(f"🎵 BPM estimado: {bpm:.2f}")
+    print(f"🎵 BPM estimado: {float(np.atleast_1d(bpm)[0]):.2f}")
     print(f"🎵 Centroid espectral médio: {centroid.mean():.2f} Hz")
     print(f"🎵 Bandwidth espectral médio: {bandwidth.mean():.2f} Hz")
 

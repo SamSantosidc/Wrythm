@@ -10,7 +10,10 @@ import numpy as np
 def estimate_bpm(y, sr):
     """Estima o tempo (BPM) da música."""
     tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
-    return tempo
+    # Garantindo que seja float
+    if isinstance(tempo, (list, np.ndarray)):
+        return float(tempo[0]) if len(np.atleast_1d(tempo)) > 0 else 0.0
+    return float(tempo)
 
 
 def extract_chroma(y, sr):
