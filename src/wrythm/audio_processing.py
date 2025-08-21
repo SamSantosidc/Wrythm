@@ -3,8 +3,11 @@ Módulo responsável pelo carregamento e pré-processamento de áudio.
 Explora funções para normalização, resample e segmentação.
 """
 
+import os
 import librosa
 import numpy as np
+from pydub import AudioSegment
+from tkinter import Tk, filedialog
 
 
 def select_file():
