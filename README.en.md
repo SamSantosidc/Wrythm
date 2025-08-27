@@ -1,68 +1,76 @@
-# 🌍 English  
-
 # 🎵 Wrythm  
 
-**Wrythm** is a project that combines **Artificial Intelligence and Music**, providing a new way to study and understand compositions.  
-Instead of only generating tabs automatically, it analyzes **rhythm, style, historical context, and composer traits**, helping musicians to understand the **why behind the music**, not just how to play it.  
+[🇧🇷 Versão em Português](README.md) | [🌍 English Version](READMEen.md)
 
 ---
 
-## 🚀 Features  
+## 🌍 About the Project  
 
-- 🎼 Automatic **tabs and sheet music** generation  
-- ⏱ Detection of **tempo, rhythm, and patterns**  
-- 🎶 Identification of **chords and harmonic structure**  
-- 🧑‍🎓 Didactic explanations to improve **musical literacy**  
-- 📜 Recognition of **musical style, historical context, and composer traits** *(in progress)*  
+**Wrythm** is an experimental platform that merges **Artificial Intelligence and Music**, focusing on **AI-assisted music learning**.  
+More than just generating tablature or sheet music, it performs advanced analysis on **rhythm, style, genre, historical context, and compositional traits**, helping musicians understand not only *how to play*, but *why the music was written the way it is*.  
+
+---
+
+## 🚀 Key Features  
+
+- 🎼 **Automatic tablature and sheet music generation** from audio or microphone.  
+- ⏱ **Rhythmic and temporal analysis** (BPM, rhythmic cells, tempo).  
+- 🎶 **Harmonic analysis**: chords, progressions, and structure.  
+- 🧑‍🎓 **Music learning focus**: didactic insights on style, era, and composer traits.  
+- 📜 **Historical and stylistic characterization** of compositions.  
+
+---
+
+## 📂 Processing Pipeline  
+
+1. **Audio Input** → file upload (MP3, WAV, MP4) or live recording.  
+2. **Preprocessing** → normalization, noise reduction, segmentation.  
+3. **Feature Extraction** → rhythm, style, harmonic structure, composer traits.  
+4. **Advanced AI Analysis** → genre, historical influences, stylistic fingerprinting.  
+5. **Output** → sheet music/tab generation, rhythm visualization, didactic explanations.  
 
 ---
 
 ## 🛠 Tech Stack  
 
-- **Python**  
-- **librosa** – audio analysis and feature extraction  
-- **pydub** – audio file processing  
-- **tkinter** – graphical user interface  
-- **math / os** – calculations and file handling  
+- Python  
+- librosa → audio analysis and feature extraction  
+- pydub → audio file processing  
+- tkinter → graphical interface  
+- NumPy / math → numerical processing  
+- os → file system management  
 
 ---
 
 ## ▶️ Getting Started  
 
 Clone the repository:  
-
 ```bash
 git clone https://github.com/seu-usuario/wrythm.git
+```
+
+```bash
 cd wrythm
 ```
 
-Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the app:
 ```bash
 python app.py
 ```
 
----
-
 🔮 Roadmap
 
- - Modern GUI redesign
-
- - Interactive visualizations (e.g., Plotly)
-
- - Advanced AI for historical and stylistic analysis
-
- - Real-time microphone support
-
- - Integrated educational material
-
----
+1. Modernized GUI.
+2. nteractive visualizations (Plotly).
+3. Expanded AI for historical and stylistic analysis.
+4. Real-time microphone support.
+5. Integrated educational content.
 
 🤝 Contributing
 
-Feel free to open issues and submit pull requests.
-The goal of Wrythm is to merge technology, music, and education to transform the way we learn music. 🎶
+Contributions are welcome!
+Open issues or submit PRs to collaborate.
+Wrythm aims to merge technology, music, and education into a single ecosystem.
