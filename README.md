@@ -1,6 +1,6 @@
 # 🎵 Wrythm  
 
-[🇧🇷 Versão em Português](README.md) | [🌍 English Version](READMEen.md)
+[🇧🇷 Versão em Português](README.md) | [🌍 English Version](README.en.md)
 
 ---
 
