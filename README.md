@@ -9,15 +9,15 @@
 O **Wrythm** é uma plataforma experimental que integra **Inteligência Artificial e Música**, com foco em **aprendizado musical assistido por tecnologia**.  
 O projeto vai além da simples geração automática de partituras ou tablaturas: ele analisa **ritmo, estilo, gênero, contexto histórico e características composicionais**, oferecendo ao estudante uma visão mais completa da obra.  
 
-### 🚀 Funcionalidades Principais  
+### Funcionalidades Principais  
 
-- 🎼 **Geração automática de tablatura e partitura** a partir de arquivos de áudio ou microfone.  
-- ⏱ **Extração rítmica e temporal** (BPM, padrões rítmicos e andamento).  
-- 🎶 **Análise harmônica**: acordes, progressões e estrutura da música.  
-- 🧑‍🎓 **Ênfase no aprendizado musical**: explicações didáticas sobre estilo, época e autor.  
-- 📜 **Identificação de características históricas e estilísticas** relevantes à obra.  
+- **Geração automática de tablatura e partitura** a partir de arquivos de áudio ou microfone.  
+- **Extração rítmica e temporal** (BPM, padrões rítmicos e andamento).  
+- **Análise harmônica**: acordes, progressões e estrutura da música.  
+- **Ênfase no aprendizado musical**: explicações didáticas sobre estilo, época e autor.  
+- **Identificação de características históricas e estilísticas** relevantes à obra.  
 
-### 📂 Pipeline de Processamento  
+### Pipeline de Processamento  
 
 1. **Entrada de Áudio** → arquivos (MP3, WAV, MP4) ou microfone em tempo real.  
 2. **Pré-processamento** → normalização, redução de ruído, segmentação.  
@@ -25,7 +25,7 @@ O projeto vai além da simples geração automática de partituras ou tablaturas
 4. **Análise Avançada (IA)** → gênero, características da época, assinatura composicional.  
 5. **Saída** → partitura/tablatura, visualização rítmica e material educativo.  
 
-### 🛠 Tecnologias  
+### Tecnologias  
 
 - Python  
 - librosa → análise de áudio e features  
@@ -34,7 +34,7 @@ O projeto vai além da simples geração automática de partituras ou tablaturas
 - NumPy / math → cálculos numéricos  
 - os → manipulação de arquivos  
 
-### ▶️ Execução  
+### Execução  
 
 ```bash
 git clone https://github.com/seu-usuario/wrythm.git
@@ -52,7 +52,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-🔮 Roadmap
+Roadmap
 
 1. Interface gráfica modernizada.
 
