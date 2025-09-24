@@ -1,0 +1,16 @@
+# Arquivo de variáveis de ambiente
+.env
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Notebooks temporários
+*.ipynb_checkpoints
+
+# Logs
+*.log
+
+# Dados brutos ou exportados
+data/
+outputs/
