@@ -2,7 +2,7 @@
 import os, requests, json, numpy as np, soundfile as sf
 import librosa
 from pathlib import Path
-from spotify_setup import sp  # client pessoal
+from spotify_setup import sp  # client pessoal (Informações ocultadas na .env)
 
 def safe_filename(s):
     return "".join(c if c.isalnum() or c in "._-" else "_" for c in s)[:200]
@@ -16,27 +16,27 @@ def download_preview(url, out_path):
     return out_path
 
 def extract_features(audio_path, sr=22050, n_mfcc=40, rhythmic_bins=16, melodic_segments=16):
-    # carrega (librosa lida com mp3)
+    # carrega (librosa lida com mp3).
     y, _sr = librosa.load(audio_path, sr=sr, mono=True, duration=30.0)
 
-    # MFCC 
+    # MFCC  (Características de timbres).
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
-    mfcc_mean = mfcc.mean(axis=1)          # vetor n_mfcc
+    mfcc_mean = mfcc.mean(axis=1)          # vetor n_mfcc (vetor que armazena tais características).
     mfcc_var  = mfcc.var(axis=1)
 
-    # BPM / beats
+    # BPM / beats (Utilizando o librosa, extraímos o BPM da música).
     onset_env = librosa.onset.onset_strength(y=y, sr=sr)
     tempo, beat_frames = librosa.beat.beat_track(onset_envelope=onset_env, sr=sr)
     tempo = float(tempo)
 
-    # rhythmic_cell: histogram de onsets dividido em bins ao longo da duração
+    # rhythmic_cell: histogram de onsets dividido em bins ao longo da duração (Visualiza os ataques[momentos de grandes picos] e calcula a o tempo entre eles).
     onset_frames = librosa.onset.onset_detect(y=y, sr=sr)
     onset_times = librosa.frames_to_time(onset_frames, sr=sr)
     duration = len(y) / sr
     rhythmic_hist, _ = np.histogram(onset_times, bins=rhythmic_bins, range=(0, duration))
     rhythmic_cell = rhythmic_hist.astype(int).tolist()
 
-    # melodic_cell: chroma, pega dominante por segmento
+    # melodic_cell: chroma, pega dominante por segmento.
     chroma = librosa.feature.chroma_cqt(y=y, sr=sr)  # shape (12, T)
     T = chroma.shape[1]
     seg_len = max(1, T // melodic_segments)
@@ -49,7 +49,7 @@ def extract_features(audio_path, sr=22050, n_mfcc=40, rhythmic_bins=16, melodic_
             melodic_cell.append(int(np.argmax(seg.mean(axis=1))))
     # melodic_cell é lista de ints 0..11
 
-    # key estimate (heurístico simples)
+    # key estimate (heurístico simples) (Tom da música/áudio).
     chroma_mean = chroma.mean(axis=1)
     key = int(np.argmax(chroma_mean))  # 0..11
 
@@ -73,6 +73,7 @@ def save_features_np(out_features_dir, spotify_id, mfcc_array, chroma_array):
     return str(p)
 
 
+# Coletar metadatas dos aúdios coletados pelo spotify.
 def process_track_and_write_metadata(track, genre_tag, previews_root="previews", features_root="features", meta_root="metadata"):
     preview_url = track.get("preview_url")
     if not preview_url:
