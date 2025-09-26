@@ -15,10 +15,15 @@ def freq_to_tab_position(freq):
     """
     Converte frequência para (nota, [(corda, casa)]) possíveis.
     """
+    if freq is None or np.isnan(freq) or freq <= 0:
+        return None, []   # ignora valores inválidos
+
     note = librosa.hz_to_note(freq)
     positions = []
     for string, base_freq in STANDARD_TUNING.items():
+        # calcula casa
         fret = round(12 * np.log2(freq / base_freq))
-        if 0 <= fret <= 20:  # limite de 20 casas
+        if 0 <= fret <= 20:  # limita casas
             positions.append((string, fret))
+
     return note, positions
