@@ -16,28 +16,16 @@ def freq_to_tab_position(freq, max_fret=20):
     Converte frequência para (nota_str, [(string, fret)]) possíveis.
     Se freq inválida retorna (None, []).
     """
-    if freq is None:
-        return None, []
-    try:
-        # garantias defensivas
-        freq = float(freq)
-    except Exception:
+    if freq is None or np.isnan(freq) or freq <= 0:
         return None, []
 
-    if np.isnan(freq) or freq <= 0:
-        return None, []
-
-    # Converte Hz -> nota (ex: "A4")
-    try:
-        note = librosa.hz_to_note(freq)
-    except Exception:
-        return None, []
-
+    note = librosa.hz_to_note(freq)
     positions = []
     for string, base_freq in STANDARD_TUNING.items():
-        # fret = 12 * log2(freq / base_freq)
-        fret = int(round(12 * np.log2(freq / base_freq)))
-        if 0 <= fret <= max_fret:
+        fret = round(12 * np.log2(freq / base_freq))
+        if 0 <= fret <= 20:  # limite típico
             positions.append((string, fret))
 
+    # NOVO: ordenar para favorecer cordas soltas e casas baixas
+    positions.sort(key=lambda x: (x[1], x[0]))  
     return note, positions
