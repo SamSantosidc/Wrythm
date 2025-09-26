@@ -1,5 +1,6 @@
 import librosa
 import numpy as np
+from scipy.signal import medfilt
 
 def extract_pitches(audio_path, sr=22050, fmin=82, fmax=1000):
     """
@@ -25,3 +26,29 @@ def extract_pitches(audio_path, sr=22050, fmin=82, fmax=1000):
             pitches.append((float(t), float(freq)))
 
     return pitches
+
+def smooth_pitches(pitches, kernel_size=5):
+    """
+    Aplica filtro mediano para suavizar variações rápidas de frequência.
+    """
+    if not pitches:
+        return []
+    imes, freqs = zip(*pitches)
+    freqs = np.array(freqs)
+    freqs = medfilt(freqs, kernel_size=kernel_size)
+    return list(zip(times, freqs))
+
+def group_notes(pitches, time_threshold=0.1):
+    """
+    Agrupa notas próximas no tempo para evitar repetições excessivas.
+    """
+    if not pitches:
+        return []
+    grouped = []
+    last_t, last_f = pitches[0]
+    grouped.append((last_t, last_f))
+    for t, f in pitches[1:]:
+        if abs(t - last_t) >= time_threshold:
+            grouped.append((t, f))
+            last_t, last_f = t, f
+    return grouped
