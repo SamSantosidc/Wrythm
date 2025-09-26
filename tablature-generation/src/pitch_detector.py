@@ -30,13 +30,22 @@ def extract_pitches(audio_path, sr=22050, fmin=82, fmax=1000):
 def smooth_pitches(pitches, kernel_size=5):
     """
     Aplica filtro mediano para suavizar variações rápidas de frequência.
+    pitches: lista [(tempo, freq)]
     """
     if not pitches:
         return []
-    imes, freqs = zip(*pitches)
-    freqs = np.array(freqs)
-    freqs = medfilt(freqs, kernel_size=kernel_size)
-    return list(zip(times, freqs))
+
+    times, freqs = zip(*pitches)
+    freqs = np.array(freqs, dtype=float)
+
+    # kernel_size deve ser ímpar e <= tamanho do array
+    if kernel_size > len(freqs):
+        kernel_size = len(freqs) if len(freqs) % 2 == 1 else len(freqs) - 1
+    if kernel_size < 1:
+        return list(zip(times, freqs))
+
+    freqs_filtered = medfilt(freqs, kernel_size=kernel_size)
+    return list(zip(times, freqs_filtered))
 
 def group_notes(pitches, time_threshold=0.1):
     """
